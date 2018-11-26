@@ -54,18 +54,8 @@ public class IntJoukko {
         return false;
     }
 
-    public boolean kuuluu(int luku) {
-        int on = 0;
-        for (int i = 0; i < alkioidenMaara; i++) {
-            if (luku == lukutaulukko[i]) {
-                on++;
-            }
-        }
-        if (on > 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean kuuluu(int etsittavaLuku) {
+        return indexOf(etsittavaLuku) != -1;
     }
 
     public boolean poista(int luku) {
@@ -168,5 +158,14 @@ public class IntJoukko {
         }
 
         return z;
+    }
+
+    private int indexOf(int etsittavaLuku) {
+        for (int i = 0; i < alkioidenMaara; i++) {
+            if (lukutaulukko[i] == etsittavaLuku) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
