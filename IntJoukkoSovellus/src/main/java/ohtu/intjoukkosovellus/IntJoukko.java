@@ -2,9 +2,10 @@ package ohtu.intjoukkosovellus;
 
 public class IntJoukko {
 
-    public final static int OLETUSKAPASITEETTI = 5; // aloitustalukon koko
-    public final static int OLETUSKASVATUSKOKO = 5;  // luotava uusi taulukko on
+    private final static int OLETUSKAPASITEETTI = 5; // aloitustalukon koko
+    private final static int OLETUSKASVATUSKOKO = 5;  // luotava uusi taulukko on
     // näin paljon isompi kuin vanha
+
     private final int kasvatuskoko;     // Uusi taulukko on tämän verran vanhaa suurempi.
     private int[] lukutaulukko;      // Joukon luvut säilytetään taulukon alkupäässä.
     private int alkioidenMaara;    // Tyhjässä joukossa alkioiden_määrä on nolla.
