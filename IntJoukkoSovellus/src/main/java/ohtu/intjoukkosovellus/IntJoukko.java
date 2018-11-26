@@ -1,5 +1,7 @@
 package ohtu.intjoukkosovellus;
 
+import com.google.common.base.Joiner;
+import com.google.common.primitives.Ints;
 import java.util.Arrays;
 
 public class IntJoukko {
@@ -98,20 +100,11 @@ public class IntJoukko {
 
     @Override
     public String toString() {
-        if (alkioidenMaara == 0) {
-            return "{}";
-        } else if (alkioidenMaara == 1) {
-            return "{" + lukutaulukko[0] + "}";
-        } else {
-            String tuotos = "{";
-            for (int i = 0; i < alkioidenMaara - 1; i++) {
-                tuotos += lukutaulukko[i];
-                tuotos += ", ";
-            }
-            tuotos += lukutaulukko[alkioidenMaara - 1];
-            tuotos += "}";
-            return tuotos;
-        }
+        return String.format("{%s}", lukutaulukkoStringiksi());
+    }
+
+    private String lukutaulukkoStringiksi() {
+        return Joiner.on(", ").join(Ints.asList(toIntArray()));
     }
 
     public int[] toIntArray() {
