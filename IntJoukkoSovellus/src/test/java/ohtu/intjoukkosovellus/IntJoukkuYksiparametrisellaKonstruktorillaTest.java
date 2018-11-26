@@ -17,4 +17,8 @@ public class IntJoukkuYksiparametrisellaKonstruktorillaTest extends IntJoukkoTes
     }
     
     // perii kaikki testit luokasta IntJoukkoTest
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void konstruktoriHeittaaVirheenJosKapasiteettiOnNegatiivinen() {
+        new IntJoukko(-1);
+    }
 }

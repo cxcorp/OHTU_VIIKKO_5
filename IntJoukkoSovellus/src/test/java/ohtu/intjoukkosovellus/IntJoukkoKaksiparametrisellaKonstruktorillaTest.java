@@ -13,4 +13,19 @@ public class IntJoukkoKaksiparametrisellaKonstruktorillaTest extends IntJoukkoTe
         joukko.lisaa(10);
         joukko.lisaa(3);
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void konstruktoriHeittaaVirheenJosKapasiteettiOnNegatiivinen() {
+        new IntJoukko(-1, 2);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void konstruktoriHeittaaVirheenJosKasvatuskokoOnNegatiivinen() {
+        new IntJoukko(4, -1);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void konstruktoriHeittaaVirheenJosKapasiteettiJaKasvatuskokoOnNegatiivinen() {
+        new IntJoukko(-1, -1);
+    }
 }
