@@ -71,27 +71,32 @@ public class IntJoukko {
     }
 
     public boolean poista(int luku) {
-        int kohta = -1;
-        int apu;
-        for (int i = 0; i < alkioidenMaara; i++) {
-            if (luku == lukutaulukko[i]) {
-                kohta = i; //siis luku löytyy tuosta kohdasta :D
-                lukutaulukko[kohta] = 0;
-                break;
-            }
-        }
-        if (kohta != -1) {
-            for (int j = kohta; j < alkioidenMaara - 1; j++) {
-                apu = lukutaulukko[j];
-                lukutaulukko[j] = lukutaulukko[j + 1];
-                lukutaulukko[j + 1] = apu;
-            }
-            alkioidenMaara--;
-            return true;
+        if (!kuuluu(luku)) {
+            return false;
         }
 
+        int index = indexOf(luku);
+        poistaTaulukosta(index);
+        alkioidenMaara--;
+        return true;
+    }
 
-        return false;
+    private void poistaTaulukosta(int indeksi) {
+        // Kopioi taulukon loppuosan indeksin alkion päälle
+        // esim:
+        // [0, 1, i, 3, 0, 0, 0]
+        //        ^-indeksi
+        // arraycopy(...)
+        // [0, 1, 3, 0, 0, 0, 0]
+        //        ^           ^- loppu paddataan nollilla
+        //        |-indeksin alkion jälkeinen osa siirtynyt päälle
+        System.arraycopy(
+            lukutaulukko,
+            indeksi + 1,
+            lukutaulukko,
+            indeksi,
+            lukutaulukko.length - 1 - indeksi
+        );
     }
 
     public int mahtavuus() {

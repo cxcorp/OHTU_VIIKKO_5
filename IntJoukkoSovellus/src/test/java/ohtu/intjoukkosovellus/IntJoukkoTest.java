@@ -42,11 +42,46 @@ public class IntJoukkoTest {
         assertFalse(joukko.kuuluu(3));
         assertEquals(1, joukko.mahtavuus());
     }
-    
+
+    @Test
+    public void poistaPoistaaEnsimmaisenaLisatyn() {
+        int[] odotettu = {3, 4};
+        joukko.lisaa(4);
+
+        assertTrue(joukko.poista(10));
+        assertArrayEquals(odotettu, joukko.toIntArray());
+    }
+
+    @Test
+    public void poistaPoistaaViimeisenaLisatynKunKapasiteettiOnTaynna() {
+        int[] odotettu = {1};
+
+        joukko = new IntJoukko(2);
+        joukko.lisaa(1);
+        joukko.lisaa(123);
+
+        boolean palautusarvo = joukko.poista(123);
+        int[] arvot = joukko.toIntArray();
+
+        assertTrue(palautusarvo);
+        assertArrayEquals(odotettu, arvot);
+    }
+
+    @Test
+    public void poistaPoistaaViimeisenaLisatynKunKapasiteettiEiOleTaynna() {
+        joukko = new IntJoukko(2);
+        joukko.lisaa(1);
+
+        boolean palautusarvo = joukko.poista(1);
+        int[] arvot = joukko.toIntArray();
+        assertTrue(palautusarvo);
+        assertEquals(0, arvot.length);
+    }
+
     @Test
     public void palautetaanOikeaTaulukko() {
         int[] odotettu = {3, 55, 99};
-        
+
         joukko.lisaa(55);
         joukko.poista(10);
         joukko.lisaa(99);
