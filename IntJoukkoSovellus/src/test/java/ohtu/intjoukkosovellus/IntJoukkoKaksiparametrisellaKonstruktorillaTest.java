@@ -28,4 +28,9 @@ public class IntJoukkoKaksiparametrisellaKonstruktorillaTest extends IntJoukkoTe
     public void konstruktoriHeittaaVirheenJosKapasiteettiJaKasvatuskokoOnNegatiivinen() {
         new IntJoukko(-1, -1);
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void konstruktoriHeittaaVirheenJosKasvatuskokoOnAlleYksi() {
+        new IntJoukko(5, 0);
+    }
 }

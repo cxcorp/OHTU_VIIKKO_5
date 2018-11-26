@@ -21,7 +21,7 @@ public class IntJoukko {
         if (kapasiteetti < 0) {
             throw new IndexOutOfBoundsException("Kapasiteetti ei voi olla negatiivinen");
         }
-        if (kasvatuskoko < 0) {
+        if (kasvatuskoko < 1) {
             throw new IndexOutOfBoundsException("Kasvatuskoko ei voi olla negatiivinen");
         }
         ljono = new int[kapasiteetti];
