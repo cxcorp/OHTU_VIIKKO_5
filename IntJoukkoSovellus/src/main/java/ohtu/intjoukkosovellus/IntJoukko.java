@@ -1,5 +1,7 @@
 package ohtu.intjoukkosovellus;
 
+import java.util.Arrays;
+
 public class IntJoukko {
 
     private final static int OLETUSKAPASITEETTI = 5; // aloitustalukon koko
@@ -32,26 +34,34 @@ public class IntJoukko {
     }
 
     public boolean lisaa(int luku) {
-        if (alkioidenMaara == 0) {
-            lukutaulukko[0] = luku;
-            alkioidenMaara++;
-            return true;
+        if (kuuluu(luku)) {
+            return false;
         }
 
-        if (alkioidenMaara == lukutaulukko.length) {
-            int[] taulukkoOld = new int[lukutaulukko.length];
-            taulukkoOld = lukutaulukko;
-            kopioiTaulukko(lukutaulukko, taulukkoOld);
-            lukutaulukko = new int[alkioidenMaara + kasvatuskoko];
-            kopioiTaulukko(taulukkoOld, lukutaulukko);
+        if (lukutaulukkoOnTaynna()) {
+            kasvataLukutaulukkoa();
         }
 
-        if (!kuuluu(luku)) {
-            lukutaulukko[alkioidenMaara] = luku;
-            alkioidenMaara++;
-            return true;
-        }
-        return false;
+        lisaaLukutaulukonPeralle(luku);
+        return true;
+    }
+
+    private void lisaaLukutaulukonPeralle(int luku) {
+        lukutaulukko[alkioidenMaara] = luku;
+        alkioidenMaara++;
+    }
+
+    private boolean lukutaulukkoOnTaynna() {
+        return alkioidenMaara == lukutaulukko.length;
+    }
+
+    private void kasvataLukutaulukkoa() {
+        int uusiKoko = laskeKasvatettuKoko();
+        lukutaulukko = Arrays.copyOf(lukutaulukko, uusiKoko);
+    }
+
+    private int laskeKasvatettuKoko() {
+        return alkioidenMaara + kasvatuskoko;
     }
 
     public boolean kuuluu(int etsittavaLuku) {
@@ -80,12 +90,6 @@ public class IntJoukko {
 
 
         return false;
-    }
-
-    private void kopioiTaulukko(int[] vanha, int[] uusi) {
-        for (int i = 0; i < vanha.length; i++) {
-            uusi[i] = vanha[i];
-        }
     }
 
     public int mahtavuus() {
