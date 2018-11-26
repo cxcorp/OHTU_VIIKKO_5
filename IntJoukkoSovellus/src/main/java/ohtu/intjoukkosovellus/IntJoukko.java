@@ -113,11 +113,7 @@ public class IntJoukko {
     }
 
     public int[] toIntArray() {
-        int[] taulu = new int[alkioidenMaara];
-        for (int i = 0; i < taulu.length; i++) {
-            taulu[i] = lukutaulukko[i];
-        }
-        return taulu;
+        return Arrays.copyOf(lukutaulukko, alkioidenMaara);
     }
 
 
