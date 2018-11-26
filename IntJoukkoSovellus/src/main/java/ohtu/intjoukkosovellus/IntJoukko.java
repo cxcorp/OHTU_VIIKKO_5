@@ -26,11 +26,8 @@ public class IntJoukko {
             throw new IndexOutOfBoundsException("Kasvatuskoko ei voi olla negatiivinen");
         }
 
-        lukutaulukko = new int[kapasiteetti];
-        for (int i = 0; i < lukutaulukko.length; i++) {
-            lukutaulukko[i] = 0;
-        }
-        alkioidenMaara = 0;
+        this.lukutaulukko = new int[kapasiteetti];
+        this.alkioidenMaara = 0;
         this.kasvatuskoko = kasvatuskoko;
     }
 
