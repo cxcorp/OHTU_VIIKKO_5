@@ -32,23 +32,23 @@ public class IntJoukko {
     }
 
     public boolean lisaa(int luku) {
-        int eiOle = 0;
         if (alkioidenMaara == 0) {
             lukutaulukko[0] = luku;
             alkioidenMaara++;
             return true;
-        } else {
         }
+
+        if (alkioidenMaara == lukutaulukko.length) {
+            int[] taulukkoOld = new int[lukutaulukko.length];
+            taulukkoOld = lukutaulukko;
+            kopioiTaulukko(lukutaulukko, taulukkoOld);
+            lukutaulukko = new int[alkioidenMaara + kasvatuskoko];
+            kopioiTaulukko(taulukkoOld, lukutaulukko);
+        }
+
         if (!kuuluu(luku)) {
             lukutaulukko[alkioidenMaara] = luku;
             alkioidenMaara++;
-            if (alkioidenMaara % lukutaulukko.length == 0) {
-                int[] taulukkoOld = new int[lukutaulukko.length];
-                taulukkoOld = lukutaulukko;
-                kopioiTaulukko(lukutaulukko, taulukkoOld);
-                lukutaulukko = new int[alkioidenMaara + kasvatuskoko];
-                kopioiTaulukko(taulukkoOld, lukutaulukko);
-            }
             return true;
         }
         return false;

@@ -83,8 +83,18 @@ public class IntJoukkoTest {
     }
 
     @Test
-    public void toStringToimiiTyhjallaJoukolla(){
+    public void toStringToimiiTyhjallaJoukolla() {
         joukko = new IntJoukko();
         assertEquals("{}", joukko.toString());
-    }     
+    }
+
+    @Test
+    public void lisatytLuvutLoytyvatTaulukonKoonKasvattamisenJalkeen() {
+        joukko = new IntJoukko(1, 2);
+        joukko.lisaa(1);
+        joukko.lisaa(2);
+
+        assertTrue(joukko.kuuluu(1));
+        assertTrue(joukko.kuuluu(2));
+    }
 }
