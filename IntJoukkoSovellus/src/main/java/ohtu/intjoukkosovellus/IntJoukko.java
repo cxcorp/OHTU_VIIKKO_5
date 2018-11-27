@@ -144,17 +144,15 @@ public class IntJoukko {
     }
 
     public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
-        IntJoukko z = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            z.lisaa(aTaulu[i]);
-        }
-        for (int i = 0; i < bTaulu.length; i++) {
-            z.poista(i);
-        }
+        IntJoukko uusiJoukko = yhdiste(a, b);
+        poistaKaikki(uusiJoukko, b.toIntArray());
+        return uusiJoukko;
+    }
 
-        return z;
+    private static void poistaKaikki(IntJoukko joukko, int[] luvut) {
+        for (int luku : luvut) {
+            joukko.poista(luku);
+        }
     }
 
     private int indexOf(int etsittavaLuku) {

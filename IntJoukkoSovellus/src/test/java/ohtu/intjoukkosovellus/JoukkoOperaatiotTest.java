@@ -80,6 +80,50 @@ public class JoukkoOperaatiotTest {
         assertArrayEquals(odotettu, tulos);
     }
 
+    @Test
+    public void erotusAntaaTyhjastaErotuksestaTyhjan() {
+        IntJoukko eka = new IntJoukko();
+        IntJoukko toka = new IntJoukko();
+
+        IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+
+        assertArrayEquals(new int[]{}, tulos);
+    }
+
+    @Test
+    public void erotusToimiiJosToinenJoukkoOnTyhja() {
+        IntJoukko eka = teeJoukko(1, 2, 3);
+        IntJoukko toka = new IntJoukko();
+
+        IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+
+        assertArrayEquals(new int[]{1, 2, 3}, tulos);
+    }
+
+    @Test
+    public void erotusToimiiJosMolemmissaJoitainSamoja() {
+        IntJoukko eka = teeJoukko(3, 100, 10);
+        IntJoukko toka = teeJoukko(100, 17, 1);
+
+        IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+
+        assertArrayEquals(new int[]{3, 10}, tulos);
+    }
+
+    @Test
+    public void erotusToimiiJosMolemmatJoukotOvatSamoja() {
+        IntJoukko eka = teeJoukko(1, 5, 0, 100);
+        IntJoukko toka = teeJoukko(100, 1, 0, 5);
+
+        IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+
+        assertArrayEquals(new int[]{}, tulos);
+    }
+
     private IntJoukko teeJoukko(int... luvut) {
         IntJoukko joukko = new IntJoukko();
 
