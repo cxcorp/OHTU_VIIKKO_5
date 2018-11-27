@@ -38,6 +38,48 @@ public class JoukkoOperaatiotTest {
         assertArrayEquals(odotettu, tulos);
     }
 
+    @Test
+    public void leikkausToimiiKunJoukoissaEiSamojaAlkioita() {
+        IntJoukko eka = teeJoukko(1, 2);
+        IntJoukko toka = teeJoukko(3, 4);
+
+        IntJoukko tulosjoukko = IntJoukko.leikkaus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+        Arrays.sort(tulos);
+
+        int[] odotettu = {};
+
+        assertArrayEquals(odotettu, tulos);
+    }
+
+    @Test
+    public void leikkausToimiiKunJoukoissaOnJoitainSamojaAlkioita() {
+        IntJoukko eka = teeJoukko(5, 2, 3, 1);
+        IntJoukko toka = teeJoukko(3, 4, 5, 6);
+
+        IntJoukko tulosjoukko = IntJoukko.leikkaus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+        Arrays.sort(tulos);
+
+        int[] odotettu = {3, 5};
+
+        assertArrayEquals(odotettu, tulos);
+    }
+
+    @Test
+    public void leikkausToimiiKunJoukoissaOnVainSamojaAlkioita() {
+        IntJoukko eka = teeJoukko(10, 1, 5);
+        IntJoukko toka = teeJoukko(5, 10, 1);
+
+        IntJoukko tulosjoukko = IntJoukko.leikkaus(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+        Arrays.sort(tulos);
+
+        int[] odotettu = {1, 5, 10};
+
+        assertArrayEquals(odotettu, tulos);
+    }
+
     private IntJoukko teeJoukko(int... luvut) {
         IntJoukko joukko = new IntJoukko();
 

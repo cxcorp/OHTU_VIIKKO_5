@@ -130,17 +130,17 @@ public class IntJoukko {
     }
 
     public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {
-        IntJoukko y = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            for (int j = 0; j < bTaulu.length; j++) {
-                if (aTaulu[i] == bTaulu[j]) {
-                    y.lisaa(bTaulu[j]);
-                }
+        IntJoukko uusiJoukko = new IntJoukko();
+        lisaaMolemmissaOlevat(a, b, uusiJoukko);
+        return uusiJoukko;
+    }
+
+    private static void lisaaMolemmissaOlevat(IntJoukko a, IntJoukko b, IntJoukko kohde) {
+        for (int luku : a.toIntArray()) {
+            if (b.kuuluu(luku)) {
+                kohde.lisaa(luku);
             }
         }
-        return y;
     }
 
     public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
