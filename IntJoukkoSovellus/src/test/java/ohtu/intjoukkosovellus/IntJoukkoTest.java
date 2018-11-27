@@ -90,11 +90,11 @@ public class IntJoukkoTest {
         Arrays.sort(vastaus);
         assertArrayEquals(odotettu, vastaus);
     }
-    
-    
+
+
     @Test
-    public void toimiiKasvatuksenJalkeen(){
-        int[] lisattavat = {1,2,4,5,6,7,8,9,11,12,13,14};
+    public void toimiiKasvatuksenJalkeen() {
+        int[] lisattavat = {1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14};
         for (int luku : lisattavat) {
             joukko.lisaa(luku);
         }
@@ -104,14 +104,14 @@ public class IntJoukkoTest {
         assertFalse(joukko.kuuluu(11));
         assertEquals(13, joukko.mahtavuus());
     }
-    
+
     @Test
-    public void toStringToimii(){
+    public void toStringToimii() {
         assertEquals("{10, 3}", joukko.toString());
     }
-    
+
     @Test
-    public void toStringToimiiYhdenKokoiselleJoukolla(){
+    public void toStringToimiiYhdenKokoiselleJoukolla() {
         joukko = new IntJoukko();
         joukko.lisaa(1);
         assertEquals("{1}", joukko.toString());

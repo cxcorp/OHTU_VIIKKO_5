@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 
 public class IntJoukkuYksiparametrisellaKonstruktorillaTest extends IntJoukkoTest {
-    
+
     @Before
     @Override
     public void setUp() {
@@ -15,7 +15,7 @@ public class IntJoukkuYksiparametrisellaKonstruktorillaTest extends IntJoukkoTes
         joukko.lisaa(10);
         joukko.lisaa(3);
     }
-    
+
     // perii kaikki testit luokasta IntJoukkoTest
     @Test(expected = IndexOutOfBoundsException.class)
     public void konstruktoriHeittaaVirheenJosKapasiteettiOnNegatiivinen() {
