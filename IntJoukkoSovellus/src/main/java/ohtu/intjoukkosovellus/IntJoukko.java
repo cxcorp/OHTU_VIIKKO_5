@@ -116,18 +116,17 @@ public class IntJoukko {
         return Arrays.copyOf(lukutaulukko, alkioidenMaara);
     }
 
-
     public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
-        IntJoukko x = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            x.lisaa(aTaulu[i]);
+        IntJoukko uusiJoukko = new IntJoukko();
+        lisaaKaikki(uusiJoukko, a.toIntArray());
+        lisaaKaikki(uusiJoukko, b.toIntArray());
+        return uusiJoukko;
+    }
+
+    private static void lisaaKaikki(IntJoukko joukko, int[] luvut) {
+        for (int luku : luvut) {
+            joukko.lisaa(luku);
         }
-        for (int i = 0; i < bTaulu.length; i++) {
-            x.lisaa(bTaulu[i]);
-        }
-        return x;
     }
 
     public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {

@@ -23,6 +23,22 @@ public class JoukkoOperaatiotTest {
         assertArrayEquals(odotettu, vastauksenLuvut);        
     } 
 
+    @Test
+    public void yhdisteEiLisaaDuplikaatteja() {
+        int[] ekat = {1, 2, 3, 4};
+        int[] tokat = {4, 5, 6};
+        IntJoukko eka = teeJoukko(ekat);
+        IntJoukko toka = teeJoukko(tokat);
+
+        IntJoukko tulosjoukko = IntJoukko.yhdiste(eka, toka);
+        int[] tulos = tulosjoukko.toIntArray();
+        Arrays.sort(tulos);
+
+        int[] odotettu = {1, 2, 3, 4, 5, 6};
+
+        assertArrayEquals(odotettu, tulos);
+    }
+
     private IntJoukko teeJoukko(int... luvut) {
         IntJoukko joukko = new IntJoukko();
         
