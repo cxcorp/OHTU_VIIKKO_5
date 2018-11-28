@@ -2,16 +2,18 @@
 package ohtu.intjoukkosovellus;
 
 import java.util.Arrays;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class JoukkoOperaatiotTest {
 
+    private IntJoukko eka = new IntJoukko();
+    private IntJoukko toka = new IntJoukko();
+
     @Test
     public void testSomething() {
-        IntJoukko eka = teeJoukko(1, 2);
-        IntJoukko toka = teeJoukko(3, 4);
+        eka = teeJoukko(1, 2);
+        toka = teeJoukko(3, 4);
 
         IntJoukko tulos = IntJoukko.yhdiste(eka, toka);
         int[] vastauksenLuvut = tulos.toIntArray();
@@ -24,10 +26,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void yhdisteEiLisaaDuplikaatteja() {
-        int[] ekat = {1, 2, 3, 4};
-        int[] tokat = {4, 5, 6};
-        IntJoukko eka = teeJoukko(ekat);
-        IntJoukko toka = teeJoukko(tokat);
+        eka = teeJoukko(1, 2, 3, 4);
+        toka = teeJoukko(4, 5, 6);
 
         IntJoukko tulosjoukko = IntJoukko.yhdiste(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -40,8 +40,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void leikkausToimiiKunJoukoissaEiSamojaAlkioita() {
-        IntJoukko eka = teeJoukko(1, 2);
-        IntJoukko toka = teeJoukko(3, 4);
+        eka = teeJoukko(1, 2);
+        toka = teeJoukko(3, 4);
 
         IntJoukko tulosjoukko = IntJoukko.leikkaus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -54,8 +54,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void leikkausToimiiKunJoukoissaOnJoitainSamojaAlkioita() {
-        IntJoukko eka = teeJoukko(5, 2, 3, 1);
-        IntJoukko toka = teeJoukko(3, 4, 5, 6);
+        eka = teeJoukko(5, 2, 3, 1);
+        toka = teeJoukko(3, 4, 5, 6);
 
         IntJoukko tulosjoukko = IntJoukko.leikkaus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -68,8 +68,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void leikkausToimiiKunJoukoissaOnVainSamojaAlkioita() {
-        IntJoukko eka = teeJoukko(10, 1, 5);
-        IntJoukko toka = teeJoukko(5, 10, 1);
+        eka = teeJoukko(10, 1, 5);
+        toka = teeJoukko(5, 10, 1);
 
         IntJoukko tulosjoukko = IntJoukko.leikkaus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -82,8 +82,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void erotusAntaaTyhjastaErotuksestaTyhjan() {
-        IntJoukko eka = new IntJoukko();
-        IntJoukko toka = new IntJoukko();
+        eka = new IntJoukko();
+        toka = new IntJoukko();
 
         IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -93,8 +93,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void erotusToimiiJosToinenJoukkoOnTyhja() {
-        IntJoukko eka = teeJoukko(1, 2, 3);
-        IntJoukko toka = new IntJoukko();
+        eka = teeJoukko(1, 2, 3);
+        toka = new IntJoukko();
 
         IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -104,8 +104,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void erotusToimiiJosMolemmissaJoitainSamoja() {
-        IntJoukko eka = teeJoukko(3, 100, 10);
-        IntJoukko toka = teeJoukko(100, 17, 1);
+        eka = teeJoukko(3, 100, 10);
+        toka = teeJoukko(100, 17, 1);
 
         IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
@@ -115,8 +115,8 @@ public class JoukkoOperaatiotTest {
 
     @Test
     public void erotusToimiiJosMolemmatJoukotOvatSamoja() {
-        IntJoukko eka = teeJoukko(1, 5, 0, 100);
-        IntJoukko toka = teeJoukko(100, 1, 0, 5);
+        eka = teeJoukko(1, 5, 0, 100);
+        toka = teeJoukko(100, 1, 0, 5);
 
         IntJoukko tulosjoukko = IntJoukko.erotus(eka, toka);
         int[] tulos = tulosjoukko.toIntArray();
